@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "start": "npm run start-server",
     "build-ts": "tsc",
     "start-tracker": "./bin/start-tracker.sh",
     "start-server": "node dist/server/index.js",
