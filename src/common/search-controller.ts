@@ -58,13 +58,15 @@ export default class SearchController {
   /**
    * Lists trips
    */
-  public listTrips = async (name: string) => {
+  public listTrips = async (name: string, from: number, size: number) => {
     const { body } = await this.client.search({
       index: TRIP_INDEX,
       body: {
         sort: [
           { start: { order: "desc"}},
         ],
+        from: from,
+        size: size,
         query: {
           match: { name: name }
         }
@@ -78,13 +80,15 @@ export default class SearchController {
   /**
    * Lists traces
    */
-  public listTraces = async (name: string, start: Date, end: Date) => {
+  public listTraces = async (name: string, start: Date, end: Date, from: number, size: number) => {
     const { body } = await this.client.search({
       index: TRACE_INDEX,
       body: {
         sort: [
           { time: { order: "asc"}},
         ],
+        from: from,
+        size: size,
         query: {
           bool : {
             must : [

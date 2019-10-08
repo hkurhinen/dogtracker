@@ -42,7 +42,9 @@ app.post("/trips/finish", async (req, res) => {
 
 app.get("/trips/:name", async (req, res) => {
   try {
-    const trips = await searchController.listTrips(req.params.name);
+    const from = req.query.from || 0;
+    const size = req.query.size || 10;
+    const trips = await searchController.listTrips(req.params.name, from, size);
     res.send(trips.map((trip: any) => trip._source));
   } catch(e) {
     res.status(500).send(e);
@@ -53,12 +55,14 @@ app.get("/traces/:name", async (req, res) => {
   try {
     const start = moment(req.query.start, "x");
     const end = moment(req.query.end, "x");
+    const from = req.query.from || 0;
+    const size = req.query.size || 1000;
     if (!start.isValid() || !end.isValid()) {
       res.status(400).send("Invalid start or end parameters");
       return;
     }
 
-    const traces = await searchController.listTraces(req.params.name, start.toDate(), end.toDate());
+    const traces = await searchController.listTraces(req.params.name, start.toDate(), end.toDate(), from, size);
     res.send(traces.map((trace: any) => trace._source));
   } catch(e) {
     res.status(500).send(e);
