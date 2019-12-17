@@ -22,6 +22,7 @@ const INDEX_CONFIGS: indexConfig[] = [
       properties: {
         name: { type: "keyword"},
         status: { type: "keyword" },
+        video: { type: "keyword" },
         start: { type: "date"},
         end: { type: "date"}
       }
