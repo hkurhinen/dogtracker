@@ -27,7 +27,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "install": "^0.13.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "nconf": "^0.10.0",
     "npm": "^6.11.3",
     "serialport": "^7.1.5"
